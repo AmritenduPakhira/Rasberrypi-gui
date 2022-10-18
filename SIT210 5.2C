@@ -1,0 +1,59 @@
+from tkinter import *
+from turtle import color
+from gpiozero import LED
+import tkinter.font as style
+import RPi.GPIO
+
+RPi.GPIO.setmode(RPi.GPIO.BCM)
+
+led_red = LED(26)
+led_green =LED(18)
+led_blue = LED(20)
+ 
+
+root = Tk()
+root.geometry("300x200")
+root.title("Radiobuttonblinker")
+
+var = IntVar()
+
+def led1():
+	if led_red.is_lit:
+		led_red.off()
+		ledButton1["text"] = "Turn RED-LED ON"
+
+	else:
+		led_red.on()
+		ledButton1["text"] = "Turn RED-LED OFF"
+
+def led2():
+	if led_green.is_lit:
+		led_green.off()
+		ledButton1["text"] = "Turn GREEN-LED ON"
+
+	else:
+		led_green.on()
+		ledButton1["text"] = "Turn GREEN-LED OFF"
+
+def led3():
+	if led_blue.is_lit:
+		led_blue.off()
+		ledButton1["text"] = "Turn BLUE-LED ON"
+
+	else:
+		led_blue.on()
+		ledButton1["text"] = "Turn BLUE-LED OFF"
+
+def close():
+	RPi.GPIO.cleanup()
+	root.destroy()
+
+
+
+Label(root, text="Which LED you want to Blink?", font="lucida 12 bold", justify=LEFT, padx=14).pack() 
+
+ledButton1 = Radiobutton(root, text="Red", padx=14,  font="Times" , command = led1,variable=var,bg="#DC143C" , value=1, height = 2).pack()
+ledButton2 = Radiobutton(root, text="Green", padx=14, font="Times" , command= led2,variable=var, bg="#7FFF00", value=2, height = 2).pack()
+ledButton3 = Radiobutton(root, text="Blue", padx=14, font="Times" , command = led3,variable=var, value=3, bg="#0000FF", height = 2).pack()
+Button(root, text = "QUIT", font = "Times", command = close, bg = "red", height = 1).pack()
+root.mainloop()  
