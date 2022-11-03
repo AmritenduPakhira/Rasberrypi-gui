@@ -24,6 +24,8 @@ def led1():
 
 	else:
 		led_red.on()
+		led_green.off()
+		led_blue.off()
 		ledButton1["text"] = "Turn RED-LED OFF"
 
 def led2():
@@ -32,7 +34,9 @@ def led2():
 		ledButton1["text"] = "Turn GREEN-LED ON"
 
 	else:
+		led_red.off()
 		led_green.on()
+		led_blue.off()
 		ledButton1["text"] = "Turn GREEN-LED OFF"
 
 def led3():
@@ -41,6 +45,8 @@ def led3():
 		ledButton1["text"] = "Turn BLUE-LED ON"
 
 	else:
+		led_red.off()
+		led_green.off()
 		led_blue.on()
 		ledButton1["text"] = "Turn BLUE-LED OFF"
 
